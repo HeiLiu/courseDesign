@@ -1,0 +1,5 @@
+<template name="footer">
+  <view class="page-foot">
+    <view>Copyright © 东华理工大学</view>
+  </view>
+</template>
