@@ -13,7 +13,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    course_list: ''
+    course_list: []
   },
 
   /**
@@ -22,18 +22,13 @@ Page({
   onLoad: function (options) {
     // 登陆权限验证
     if (!app.globalData.userinfo) {
-      extend.redirectTo({ url: '/pages/login/login' })
+      extend.redirectTo({
+        url: '/pages/login/login'
+      })
       return false
     }
 
-    // this.course_list()
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+    this.course_list()
   },
 
   /**
@@ -43,32 +38,13 @@ Page({
 
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
+ 
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    // this.course_list()
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
+    this.course_list()
   },
 
   /**
@@ -84,31 +60,29 @@ Page({
   /**
    * 获取课程列表
    */
-  // course_list: function (e) {
-  //   extend.showLoading()
-  //   var that = this
-
-  //   extend.request({
-  //     url: config.url_course,
-  //     method: 'GET',
-  //     header: { 'content-type': 'application/x-www-form-urlencoded' },
-  //     data: {},
-  //     success: function (ret) {
-  //       if (ret.statusCode != 200) {
-  //         extend.showModal({ content: '网络请求出错,请稍后重试!' })
-  //         return false
-  //       }
-
-  //       var data = ret.data
-  //       if (!data.success) {
-  //         extend.showModal({ content: data.msg })
-  //         extend.hideLoading()
-  //         return false
-  //       }
-
-  //       that.setData({ course_list: data.data })
-  //       extend.hideLoading()
-  //     }
-  //   })
-  // }
+  course_list: function (e) {
+    wx.showLoading({
+      title: '课程加载中..',
+    })
+    
+    setTimeout(function(){
+      wx.hideLoading()
+    },1000)
+    wx.request({
+      url: 'https://easy-mock.com/mock/5adf04945cbcb66de34da5ae/students/courses',
+      success: (res)=> {
+        if (res.statusCode != 200) {
+          wx.showModal({
+            content: '网络请求出错,请稍后重试!'
+          })
+          return false
+        }
+        console.log(res.data.data.courses_list);
+        this.setData({
+          course_list: res.data.data.courses_list
+        })
+        console.log(this.data.course_list);
+      }
+    })
+  }
 })

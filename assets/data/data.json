@@ -1,0 +1,50 @@
+{
+    "data": {
+        "courses_list": [{
+            "course_name": "人工智能课程学习",
+            "teacher":"赵匡胤",
+            "outline": "人工智能的发展历程、应用前景，相关技术介绍",
+            "course_addr": "软件楼阶五",
+            "course_time": "6月18号晚8点-10点",
+            "score": "0.5",
+            "actual_num": "66",
+            "limited_num":"100"
+        },{
+            "course_name": "Python基础知识学习",
+            "teacher":"叶志翔",
+            "outline": "叶志翔老师讲解基础python语法，基本应用",
+            "course_addr": "三教阶12",
+            "course_time": "6月20号晚8点-10点",
+            "score": "0.5",
+            "actual_num": "45",
+            "limited_num":"100"
+        },{
+            "course_name": "考研英语",
+            "teacher":"曹天啸",
+            "outline": "著名讲师曹天啸莅临地学楼C3解答考研英语考点难点",
+            "course_addr": "地学楼C3",
+            "course_time": "6月22号晚7点-9点",
+            "score": "0",
+            "actual_num": "74",
+            "limited_num":"120"
+        },{
+            "course_name": "电影电视艺术鉴赏",
+            "teacher":"陈欣怡",
+            "outline": "一起看一看那个时候：欧洲某公国的公主与一个美国记者之间在意大利罗马一天之内发生的浪漫故事",
+            "course_addr": "三教阶13",
+            "course_time": "周六晚7点-10点",
+            "score": "0",
+            "actual_num": "20",
+            "limited_num":"60"
+        },{
+            "course_name": "禁毒宣传及知识竞赛",
+            "teacher":"李五四",
+            "outline": "省教育局安排的禁毒教育宣传活动，做阳光大学生",
+            "course_addr": "三教阶14",
+            "course_time": "周六晚7点-9点",
+            "score": "0.5",
+            "actual_num": "20",
+            "limited_num":"100"
+        }]
+    }
+}

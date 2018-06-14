@@ -22,7 +22,13 @@ Page({
     }
   },
   loginTap: function () {
-    wx.navigateTo({ url: '/pages/login/login' })
+    wx.request({
+      url:'http://paag677eb.bkt.clouddn.com/test.php',
+      success:function(res){
+        console.log(res);
+      }
+    })
+    wx.navigateTo({ url: '/pages/login/login' });
   }
 })
 
