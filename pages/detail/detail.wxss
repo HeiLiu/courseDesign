@@ -1,0 +1,36 @@
+.weui-label {
+  width:150rpx;
+}
+.sm-btn-area {
+  text-align:center;
+  font-size:26rpx;
+}
+.sm-btn-area button {
+  margin-bottom: 10rpx;
+}
+.flex-item-left {
+  align-self: flex-start
+}
+.info-desc {
+  line-height: 50rpx;
+}
+.text-center {
+  text-align: center;
+}
+.text-right {
+  text-align: right;
+}
+.outline{
+  font-size: 34rpx;
+  line-height: 60rpx;
+  margin:40rpx 0 200rpx 0;
+}
+.flex-width1 {
+  width: 35%;
+}
+.flex-width2 {
+  width: 50%;
+}
+.flex-width3 {
+  width: 15%;
+}

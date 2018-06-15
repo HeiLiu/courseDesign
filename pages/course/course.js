@@ -31,14 +31,6 @@ Page({
     this.course_list()
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
- 
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
@@ -56,7 +48,9 @@ Page({
       path: '/pages/course/course'
     }
   },
-
+  check(e){
+    console.log(e);
+  },
   /**
    * 获取课程列表
    */
@@ -64,24 +58,23 @@ Page({
     wx.showLoading({
       title: '课程加载中..',
     })
-    
-    setTimeout(function(){
-      wx.hideLoading()
-    },1000)
+
     wx.request({
-      url: 'https://easy-mock.com/mock/5adf04945cbcb66de34da5ae/students/courses',
-      success: (res)=> {
+      url: 'https://easy-mock.com/mock/5b2221764e7e0c3ad361130e/courses/courses_list',
+      success: (res) => {
         if (res.statusCode != 200) {
+          wx.hideLoading();
           wx.showModal({
             content: '网络请求出错,请稍后重试!'
           })
           return false
         }
-        console.log(res.data.data.courses_list);
+        // console.log(res.data.data.courses_list);
         this.setData({
           course_list: res.data.data.courses_list
         })
-        console.log(this.data.course_list);
+        // console.log(this.data.course_list);
+        wx.hideLoading()
       }
     })
   }

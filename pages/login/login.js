@@ -31,44 +31,9 @@ Page({
   },
 
   /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
-
-  /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
   
   },
 
@@ -89,6 +54,7 @@ Page({
     this.setData({
       type_index: e.detail.value
     })
+    console.log(this.data.type_index);
   },
   
   /**
@@ -101,11 +67,14 @@ Page({
     var username = form_data.username
     var password = form_data.password
     var type_user = form_data.type_user
-
+    console.log(form_data);
+    // 保存登录信息并格式化
+    const loginInfo = `${form_data.username}|${form_data.type_user}`;
+    console.log(loginInfo);
     //参数验证
     if (username == '') {
-      extend.showModal({ content: '请输入账号' })
-      extend.hideLoading()
+      wx.showModal({ content: '请输入账号' })
+      wx.hideLoading()
       return false
     }
     if(password == '') {
@@ -132,7 +101,7 @@ Page({
     //     extend.hideLoading()
     //   }
     // })
-    extend.switchTab({ url: '/pages/course/course' })
+    wx.switchTab({ url: '/pages/course/course' })
   },
 
   /**

@@ -23,9 +23,9 @@ Page({
   },
   loginTap: function () {
     wx.request({
-      url:'http://paag677eb.bkt.clouddn.com/test.php',
+      url:'https://m.xxiangfang.com/index.php/Home/Xiaoxxf/activity?is_hot=1',
       success:function(res){
-        console.log(res);
+        console.log(res.data);
       }
     })
     wx.navigateTo({ url: '/pages/login/login' });
