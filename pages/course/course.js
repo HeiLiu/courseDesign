@@ -5,7 +5,6 @@ var app = getApp()
 var config = require('../../config.js');
 
 //通用js代码
-var extend = require("../../style/js/extend.js")
 
 Page({
 
@@ -22,7 +21,7 @@ Page({
   onLoad: function (options) {
     // 登陆权限验证
     if (!app.globalData.userinfo) {
-      extend.redirectTo({
+      wx.redirectTo({
         url: '/pages/login/login'
       })
       return false
