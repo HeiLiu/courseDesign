@@ -8,8 +8,9 @@
             <text class="sm_weui_cells_title_text">{{course_detail.course_name}}</text>
           </view>
           <view class="outline">{{course_detail.outline}}</view>
+          <view class="detail">{{course_detail.course_detail}}</view>
           <view class="info-desc">
-            <view class="flex-wrp">
+            <view class="flex-wrp info">
               <view class="flex-width1">
                 <text>{{course_detail.course_time}}</text>
               </view>

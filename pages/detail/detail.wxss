@@ -23,7 +23,15 @@
 .outline{
   font-size: 34rpx;
   line-height: 60rpx;
-  margin:40rpx 0 200rpx 0;
+  margin:40rpx 0 20rpx 0;
+}
+.detail{
+  text-indent: 2em;
+  font-size: 30rpx;
+  line-height: 48rpx;
+}
+.info{
+  margin: 20rpx 0;
 }
 .flex-width1 {
   width: 35%;
