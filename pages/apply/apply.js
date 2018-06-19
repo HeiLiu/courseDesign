@@ -26,19 +26,23 @@ Page({
   onLoad: function (options) {
     // 登陆权限验证
     if (!app.globalData.userinfo) {
-      extend.redirectTo({ url: '/pages/login/login' })
+      extend.redirectTo({
+        url: '/pages/login/login'
+      })
       return false
     }
-    
-    userinfo = app.globalData.userinfo
+
+    userinfo = app.globalData.userinfo[0]
+    console.log(userinfo)
     var type_user = ['学生', '教师']
     this.setData({
       user: {
-        nickname: userinfo.nickname,
-        user_type: type_user[userinfo.type],
-        college: userinfo.college
-      }})
-    this.course_list()
+        name: userinfo.name,
+        brand: userinfo.brand,
+        department: userinfo.department
+      },
+      course_list: userinfo.courses
+    })
   },
 
   /**
