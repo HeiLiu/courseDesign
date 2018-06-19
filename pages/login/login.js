@@ -5,9 +5,6 @@ var app = getApp();
 //配置文件
 var config = require('../../config.js');
 
-//通用js代码
-var extend = require("../../style/js/extend.js")
-
 //页面的初始数据
 var data_param = {
   username: '',
@@ -34,7 +31,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+
   },
 
   /**
@@ -56,58 +53,78 @@ Page({
     })
     console.log(this.data.type_index);
   },
-  
+
   /**
    * 用户登录
    */
-  login: function(e) {
-    extend.showLoading()
-    var that = this
+  login: function (e) {
+    wx.showLoading()
     var form_data = e.detail.value
     var username = form_data.username
     var password = form_data.password
     var type_user = form_data.type_user
     console.log(form_data);
     // 保存登录信息并格式化
-    const loginInfo = `${form_data.username}|${form_data.type_user}`;
+    const loginInfo = `${username} | ${type_user}`;
     console.log(loginInfo);
     //参数验证
     if (username == '') {
-      wx.showModal({ content: '请输入账号' })
+      wx.showModal({
+        content: '请输入账号'
+      })
       wx.hideLoading()
-      return false
+      return
     }
-    if(password == '') {
-      extend.showModal({ content: '请输入密码' })
-      extend.hideLoading()
-      return false
+    if (password == '') {
+      wx.showModal({
+        content: '请输入密码'
+      })
+      wx.hideLoading()
+      return
     }
 
-    // extend.request({
-    //   url: config.url_login,
-    //   method: 'POST',
-    //   header: { 'content-type': 'application/x-www-form-urlencoded'},
-    //   data: { username: username, pw: password, type: type_user },
-    //   success: function(ret) {
-    //     var data = ret.data
-    //     if( !data.success) {
-    //       extend.showModal({ content: data.msg })
-    //       extend.hideLoading()
-    //       return false
-    //     }
-        
-    //     extend.setStorageSync('UserInfo', data.info)
-    //     app.globalData.userinfo = data.info
-    //     extend.hideLoading()
-    //   }
-    // })
-    wx.switchTab({ url: '/pages/course/course' })
+    wx.request({
+      url: 'https://easy-mock.com/mock/5b2221764e7e0c3ad361130e/courses/userInfo',
+      success: function (res) {
+        const userInfo = res.data.data.userInfo;
+        console.log(userInfo);
+        // let userinfo = userInfo.filter((item) => {
+        //   if (item[loginInfo] === password) {
+        //     console.log(item);
+        //   }
+        // });
+        let userinfo = userInfo.filter(item => {
+          console.log(loginInfo);
+          if(item[loginInfo]  == password){
+            console.log(item[loginInfo]);
+            console.log(`${item.name}`);
+            return item;
+          }
+        });
+        console.log(`sdfs${userinfo}`);
+
+        // if (!userInfo) {
+        //   wx.showModal({
+        //     content: '当前用户不存在'
+        //   })
+        //   wx.hideLoading()
+        //   return
+        // }
+
+        // wx.setStorageSync('UserInfo', data.info)
+        // app.globalData.userinfo = data.info
+        wx.hideLoading()
+        wx.switchTab({
+          url: '/pages/course/course'
+        })
+      }
+    })
   },
 
   /**
    * 表单重置
    */
-  reset: function(e) {
+  reset: function (e) {
     this.setData(data_param)
   }
 })
