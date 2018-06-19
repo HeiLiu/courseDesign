@@ -1,11 +1,11 @@
 {
   "debug": true,
   "pages":[
-    "pages/index/index",
-    "pages/course/course",
-    "pages/detail/detail",
     "pages/apply/apply",
+    "pages/course/course",
     "pages/login/login",
+    "pages/index/index",
+    "pages/detail/detail",
     "pages/scan/scan"
   ],
   "window":{
@@ -36,9 +36,9 @@
       },
       {
         "pagePath": "pages/scan/scan",
-        "text": "扫码签到",
-        "iconPath": "./style/image/scan.png",
-        "selectedIconPath": "./style/image/scan_HL.png"
+        "text": "更多",
+        "iconPath": "./style/image/more.png",
+        "selectedIconPath": "./style/image/more_HL.png"
       }
     ],
     "position": "bottom"
