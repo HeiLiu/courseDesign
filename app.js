@@ -31,6 +31,7 @@ App({
   },
   globalData: {
     userinfo: '',
+    user_type: '0',
     course_list:''
   }
 })

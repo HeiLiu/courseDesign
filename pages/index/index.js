@@ -4,9 +4,6 @@ var app = getApp();
 //配置文件
 var config = require('../../config.js');
 
-//通用js
-var extend = require("../../style/js/extend.js")
-
 Page({
   data: {
     nickname: '',
@@ -22,13 +19,9 @@ Page({
     }
   },
   loginTap: function () {
-    wx.request({
-      url:'https://m.xxiangfang.com/index.php/Home/Xiaoxxf/activity?is_hot=1',
-      success:function(res){
-        console.log(res.data);
-      }
-    })
-    wx.navigateTo({ url: '/pages/login/login' });
+    console.log('jaaa');
+    wx.navigateTo({
+      url: '/pages/login/login'
+    });
   }
 })
-

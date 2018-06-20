@@ -1,7 +1,7 @@
 <import src="../../templates/footer.wxml"/>
 <view class="container">
   <view class="page-body">
-    <block wx:if="1">
+    <block wx:if="{{user_type}}">
       <view class="sm_weui_cells">
         <view class="weui-cells__title sm_weui_cell_title">
           <view>
@@ -24,10 +24,8 @@
           </view>
         </view>
 
-        
-
         <view class="btn-area sm-btn-area">
-          <block wx:if="{{flag_apply}}">
+          <block wx:if="1">
             <button type="primary" bindtap="apply" disabled="{{apply_text == '我要报名'? false : true }}">
             {{apply_text}}
             </button>
@@ -40,6 +38,32 @@
         </view>
       </view>
     </block>
+    <!-- <block wx:else>
+      <view class="sm_weui_cells">
+        <view class="weui-cells__title sm_weui_cell_title">
+          <view>
+            <text class="sm_weui_cells_title_text ">{{course_detail.course_name}}</text>
+          </view>
+          <view class="outline">{{course_detail.outline}}</view>
+          <view class="detail">{{course_detail.course_detail}}</view>
+          <view class="info-desc">
+            <view class="flex-wrp info">
+              <view class="flex-width1">
+                <text>{{course_detail.course_time}}</text>
+              </view>
+              <view class="text-center flex-width2">
+                <text>已报名: {{course_detail.actual_num}}<text class="sm-red" wx:if="{{course_detail.limited_num!=0}}">[ 限额: {{course_detail.limited_num}} ]</text></text>
+              </view>
+              <view class="text-right flex-width3">
+                <text>{{apply_text == '我要报名'?'可选':'不可选'}}</text>
+              </view>
+            </view>
+          </view>
+        </view>
+
+          <text>截止日期：<text class="sm-red">{{course_detail.deadline}}</text> </text>
+        </view>
+    </block> -->
   </view>
 
   <template is="footer"/>

@@ -1,17 +1,19 @@
 {
   "debug": true,
-  "pages":[
+  "pages": [
+    "pages/index/index",
+    "pages/login/login",
     "pages/apply/apply",
     "pages/course/course",
-    "pages/login/login",
-    "pages/index/index",
     "pages/detail/detail",
-    "pages/scan/scan"
+    "pages/scan/scan",
+    "pages/setting/setting",
+    "pages/service/service"
   ],
-  "window":{
+  "window": {
     "navigationBarBackgroundColor": "#ffffff",
     "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "学校选课小助手",
+    "navigationBarTitleText": "校园小助手",
     "backgroundColor": "#fff",
     "backgroundTextStyle": "light",
     "enablePullDownRefresh": true

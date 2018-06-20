@@ -29,7 +29,11 @@ Page({
 
     this.course_list()
   },
-
+  onShow(e){
+    this.setData({
+      course_list: app.globalData.course_list
+    })
+  },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作

@@ -66,6 +66,8 @@ Page({
     console.log(form_data);
     // 保存登录信息并格式化
     const loginInfo = `${username} | ${type_user}`;
+    app.globalData.user_type = type_user;
+    console.log(app.globalData.user_type);
     console.log(loginInfo);
     //参数验证
     if (username == '') {
@@ -85,7 +87,7 @@ Page({
 
     wx.request({
       url: 'https://easy-mock.com/mock/5b2221764e7e0c3ad361130e/courses/userInfo',
-      success: function (res) {
+      success: (res)=> {
         const userInfo = res.data.data.userInfo;
         console.log(userInfo);
         // 通过登录信息判断用户是否存在
@@ -103,6 +105,7 @@ Page({
           wx.showModal({
             content: '当前用户不存在'
           })
+          this.reset();
           wx.hideLoading()
           return
         }
@@ -118,10 +121,6 @@ Page({
     this.course_list();
   },
   course_list: function (e) {
-    wx.showLoading({
-      title: '课程加载中..',
-    })
-
     wx.request({
       url: 'https://easy-mock.com/mock/5b2221764e7e0c3ad361130e/courses/courses_list',
       success: (res) => {
@@ -138,7 +137,6 @@ Page({
         })
         app.globalData.course_list = this.data.course_list;
         console.log(app.globalData.course_list);
-        wx.hideLoading()
       }
     })
   },

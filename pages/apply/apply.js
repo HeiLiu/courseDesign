@@ -5,9 +5,6 @@ var app = getApp();
 //配置文件
 var config = require('../../config.js');
 
-//通用js代码
-var extend = require("../../style/js/extend.js")
-
 var userinfo = ''
 
 Page({
@@ -39,7 +36,10 @@ Page({
       user: {
         name: userinfo.name,
         brand: userinfo.brand,
-        department: userinfo.department
+        department: userinfo.department,
+        pass: userinfo.pass,
+        score: userinfo.score,
+        loss: userinfo.loss
       },
       course_list: userinfo.courses
     })

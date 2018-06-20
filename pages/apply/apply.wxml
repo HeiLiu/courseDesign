@@ -11,12 +11,12 @@
             <view class="weui-media-box__info__meta weui-media-box__info__meta_extra user_meta">学院: {{user.department}}</view>
           </view>
           <view class="weui-media-box__info">
-            <view class="weui-media-box__info__meta user_meta">通过课程数: 15{{user.pass}}</view>
-            <view class="weui-media-box__info__meta weui-media-box__info__meta_extra user_meta">已获得学分: 83{{user.user_type}}</view>
-            <view class="weui-media-box__info__meta weui-media-box__info__meta_extra user_meta">不及格门数: 0{{user.college}}</view>
+            <view class="weui-media-box__info__meta user_meta">通过课程数: {{user.pass}}</view>
+            <view class="weui-media-box__info__meta weui-media-box__info__meta_extra user_meta">已获得学分: {{user.score}}</view>
+            <view class="weui-media-box__info__meta weui-media-box__info__meta_extra user_meta">不及格门数: {{user.loss}}</view>
           </view>
         </view>
-      </view>
+      </view> 
     </view>
     <block wx:if="{{course_list.length >= 1}}">
       <block wx:for="{{course_list}}" wx:for-index="idx" wx:key="{{index}}">
