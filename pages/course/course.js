@@ -5,7 +5,6 @@ var app = getApp()
 var config = require('../../config.js');
 
 //通用js代码
-var extend = require("../../style/js/extend.js")
 
 Page({
 
@@ -22,7 +21,7 @@ Page({
   onLoad: function (options) {
     // 登陆权限验证
     if (!app.globalData.userinfo) {
-      extend.redirectTo({
+      wx.redirectTo({
         url: '/pages/login/login'
       })
       return false
@@ -71,9 +70,10 @@ Page({
         }
         // console.log(res.data.data.courses_list);
         this.setData({
-          course_list: res.data.data.courses_list
+          course_list: app.globalData.course_list || res.data.data.courses_list
         })
-        // console.log(this.data.course_list);
+        app.globalData.course_list = this.data.course_list;
+        console.log(app.globalData.course_list);
         wx.hideLoading()
       }
     })

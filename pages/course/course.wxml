@@ -1,3 +1,4 @@
+<import src="../../templates/footer.wxml"/>
 <view class="container">
   <view class="page-body">
     <block wx:if="{{course_list}}">
@@ -32,5 +33,5 @@
     </block>
   </view>
 
-  <include src="../foot/foot.wxml" />
+  <template is="footer"/>
 </view>

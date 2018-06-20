@@ -88,39 +88,60 @@ Page({
       success: function (res) {
         const userInfo = res.data.data.userInfo;
         console.log(userInfo);
-        // let userinfo = userInfo.filter((item) => {
-        //   if (item[loginInfo] === password) {
-        //     console.log(item);
-        //   }
-        // });
+        // 通过登录信息判断用户是否存在
         let userinfo = userInfo.filter(item => {
           console.log(loginInfo);
           if(item[loginInfo]  == password){
-            console.log(item[loginInfo]);
-            console.log(`${item.name}`);
+            // console.log(item[loginInfo]);
+            // console.log(`${item.name}`);
             return item;
           }
         });
-        console.log(`sdfs${userinfo}`);
+        console.log(userinfo);
 
-        // if (!userInfo) {
-        //   wx.showModal({
-        //     content: '当前用户不存在'
-        //   })
-        //   wx.hideLoading()
-        //   return
-        // }
+        if (userinfo.length<1) {
+          wx.showModal({
+            content: '当前用户不存在'
+          })
+          wx.hideLoading()
+          return
+        }
 
-        // wx.setStorageSync('UserInfo', data.info)
-        // app.globalData.userinfo = data.info
+        wx.setStorageSync('UserInfo', userinfo)
+        app.globalData.userinfo = userinfo
         wx.hideLoading()
         wx.switchTab({
           url: '/pages/course/course'
         })
       }
     })
+    this.course_list();
   },
+  course_list: function (e) {
+    wx.showLoading({
+      title: '课程加载中..',
+    })
 
+    wx.request({
+      url: 'https://easy-mock.com/mock/5b2221764e7e0c3ad361130e/courses/courses_list',
+      success: (res) => {
+        if (res.statusCode != 200) {
+          wx.hideLoading();
+          wx.showModal({
+            content: '网络请求出错,请稍后重试!'
+          })
+          return false
+        }
+        // console.log(res.data.data.courses_list);
+        this.setData({
+          course_list: app.globalData.course_list || res.data.data.courses_list
+        })
+        app.globalData.course_list = this.data.course_list;
+        console.log(app.globalData.course_list);
+        wx.hideLoading()
+      }
+    })
+  },
   /**
    * 表单重置
    */
