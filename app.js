@@ -30,6 +30,7 @@ App({
     // console.log(msg)
   },
   globalData: {
-    userinfo: '123'
+    userinfo: '',
+    course_list:''
   }
 })
