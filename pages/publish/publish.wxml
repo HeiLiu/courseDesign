@@ -1,0 +1,36 @@
+<!--pages/publish/publish.wxml-->
+<!--pages/setting_detail/setting_detail.wxml-->
+<import src="../../templates/footer.wxml" />
+<view class="container">
+  <view class="page-body">
+      <form bindsubmit="publish">
+      <view class="weui_cells">
+          <view class="weui-cells__title sm_weui_cell_title">
+            <label>课程名：<input type="text" name="course_name" value="{{course_detail.course_name}}" /></label>
+            <label>标题：<input type="text" name="outline" value="{{course_detail.outline}}" /></label>
+            <view>详情：<textarea name="course_detail" id="" cols="40" rows="20" value="{{course_detail.course_detail}}"></textarea></view>
+            <view class="info-desc">
+              <view class="">
+                <label> 课程编号：<input type="text" name="course_id" value=" {{course_detail.course_id}}"></input></label>
+                  <label>任课老师： <input type="text" name="teacher" value="{{course_detail.teacher}}"></input></label>
+                  <label>上课时间：<input type="text" name="course_time" value=" {{course_detail.course_time}}"></input></label>
+                  <label>人数限制: <input type="text" name="limited_num" value=" {{course_detail.limited_num}}"></input></label>
+                  <label>学分: <input type="text" name="score" value="{{course_detail.score}}" /></label>
+                  <label>上课地点: <input type="text" name="course_addr" value="{{course_detail.course_addr}}" /></label>
+                  <label>考试地点: <input type="text" name="teat_addr" value="{{course_detail.test_addr}}"></input></label>
+                  <label>考试时间: <input type="text" name="test_time" value="{{course_detail.test_time}}"></input></label>
+                  <label>考试形式: <input type="text" name="method" value="{{course_detail.method}}"></input></label>
+                  <label>截止日期：<input class="sm-red" name="deadline" value="{{course_detail.deadline}}"></input></label>
+              </view>
+            </view>
+          </view>
+      </view>
+      <view class="btn-area">
+          <button type="primary" formType="submit">发 布</button>
+          <button type="default">取 消</button>
+      </view>
+    </form>
+  </view>
+
+  <template is="footer" />
+</view>

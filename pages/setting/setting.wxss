@@ -1,1 +1,11 @@
 /* pages/setting/setting.wxss */
+.course_name{
+    margin-bottom: 0;
+}
+.course{
+    margin-top: 10rpx;
+}
+.arrow{
+    display: relative;
+    bottom: 20rpx;
+}

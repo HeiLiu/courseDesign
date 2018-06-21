@@ -6,7 +6,7 @@ var app = getApp();
 var config = require('../../config.js');
 
 var course_id = ''
-
+var id =''
 var userinfo = ''
 
 Page({
@@ -17,7 +17,8 @@ Page({
   data: {
     user_type: true, //按钮显示标志
     course_detail: '', //课程明细信息
-    apply_text: '我要报名' //按钮文字信息
+    apply_text: '我要报名', //按钮文字信息
+    flag: false
   },
 
   /**
@@ -45,6 +46,10 @@ Page({
     console.log(this.data.user_type)
     userinfo = app.globalData.userinfo[0]
     course_id = options.course_id
+    this.data.flag = options.flag
+    console.log(options.flag)
+    id = course_id;
+    console.log(course_id);
     console.log(userinfo);
     const Mycourse = userinfo.courses
     if (Mycourse) {
@@ -58,7 +63,6 @@ Page({
       });
     }
     console.log(Mycourse)
-    console.log(this.data.apply_text)
     this.course_detail()
   },
 
@@ -136,84 +140,71 @@ Page({
       }
     })
   },
-
+  save(e){
+    console.log(this.data.course_detail);
+    let course_detail = this.data.course_detail;
+    let actual_num = course_detail.actual_num;
+    let form = e.detail.value;
+    let course_id = form.course_id;
+    let course_name = form.course_name;
+    let teacher = form.teacher;
+    let outline = form.outline;
+    let detail = form.course_detail;
+    let course_addr = form.course_addr;
+    let course_time = form.course_time;
+    let score = form.score;
+    let limited_num = form.limited_num;
+    let deadline = form.deadline;
+    let test_time = form.test_time;
+    let test_addr = form.test_addr;
+    let method = form.method;
+    let status = status;
+    console.log(form);
+    var course ={
+      // 要保存的课程
+      course_id,course_name,teacher,outline,
+      course_detail:detail,course_addr,course_time,score,actual_num,limited_num,deadline,test_addr,
+      test_time,method,status
+    }
+    let temp = app.globalData.course_list;
+    temp.forEach((item, index) => {
+      if (item.course_id == id) {
+         temp[index] = course;
+      }
+    })
+    console.log(temp);
+    app.globalData.course_list = temp;
+    console.log(app.globalData.course_list);
+    wx.showToast({
+      title: '修改成功',
+      icon: 'success',
+      duration: 2000
+    })
+    wx.switchTab({
+      url:'/pages/course/course'
+    })
+    // wx.setStorageSync('', this.data.course_detail);
+    // app.globalData.userinfo[0].courses.push(item);
+  },
   /**
    * 报名按钮
    */
   apply: function (e) {
     let course_list = app.globalData.course_list;
     wx.showLoading()
-    if (this.data.user_type) {
-      wx.showModal({
-        title: '提示',
-        content: '选定后不能退课！',
-        success: (res) => {
-          if (res.confirm) {
-
-            course_list.forEach(item => {
-              if (item.course_id == course_id) {
-                item.actual_num++;
-                this.setData({
-                  course_detail: item
-                })
-                app.globalData.course_list = course_list;
-                wx.setStorageSync(this.data.course_detail.course_id, this.data.course_detail);
-                app.globalData.userinfo[0].courses.push(item);
-                if (wx.getStorageSync(course_id)) {
-                  this.setData({
-                    apply_text: '您已报名成功'
-                  })
-                }
-              }
-            })
-          } else if (res.cancel) {
-            console.log('用户点击取消')
-          }
-        }
-      })
-    } else {
-      wx.showModal({
-        title: '提示',
-        content: '管理员你就不要皮了好不好',
-        success: (res) => {
-          if (res.confirm) {
-
-          }
-        }
-      })
-    }
-
-
+    course_list.forEach(item => {
+      if (item.course_id == course_id) {
+        item.actual_num++;
+        this.setData({
+          course_detail: item
+        })
+        app.globalData.course_list = course_list;
+        wx.setStorageSync(this.data.course_detail.course_id, this.data.course_detail);
+        app.globalData.userinfo[0].courses.push(item);
+      }
+    })
     console.log(course_list);
     app.globalData.course_list = course_list;
     wx.hideLoading();
-    // this.setData({
-    //   course_detail:course_list
-    // })
-    // wx.request({
-    //   url: config.url_course_apply,
-    //   success: function (ret) {
-    //     if (ret.statusCode != 200) {
-    //       extend.showModal({ content: '网络请求出错,请稍后重试!' })
-    //       extend.hideLoading()
-    //       return false
-    //     }
-
-    //     var data = ret.data
-    //     if (!data.success) {
-    //       wx.showModal({ content: data.msg })
-    //       wx.hideLoading()
-    //       return false
-    //     }
-
-    //     that.setData({
-    //       flag_apply: false,
-    //       apply_text: '您已报名成功',
-    //       course_detail: data.course_detail
-    //     })
-    //     wx.hideLoading()
-    //     wx.showModal({ content: data.msg })
-    //   }
-    // })
   }
 })

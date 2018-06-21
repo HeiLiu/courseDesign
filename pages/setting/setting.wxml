@@ -1,2 +1,27 @@
 <!--pages/setting/setting.wxml-->
-<text>pages/setting/setting.wxml</text>
+
+<import src="../../templates/footer.wxml" />
+<view class="container">
+    <view class="page-body">
+        <block wx:if="{{course_list}}">
+            <!-- {{course_list}} -->
+            <block wx:for="{{course_list}}" wx:key="{{index}}">
+                <view class="weui-panel course">
+                    <navigator url="/pages/setting_detail/setting_detail?course_id={{item.course_id}}" bindtap="check" data-id="{{item.course_name}}"
+                        hover-class="navigator-hover">
+                        <view class="weui-panel__bd">
+                            <view class="weui-media-box weui-media-box_text">
+                                <view class="weui-media-box__title weui-media-box__title_in-text course_name">{{item.course_name}}</view>
+                                <view class="weui-cell__ft  weui-cell__ft_in-access arrow"></view>
+                            </view>
+                        </view>
+                    </navigator>
+                </view>
+            </block>
+        </block>
+        <view class="btn-area sm-btn-area">
+            <button type="primary" bindtap="publishTap"> 发布新课程 </button>
+        </view>
+    </view>
+    <template is="footer "/>
+</view>
